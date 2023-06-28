@@ -13,8 +13,8 @@
 
 #include "SDL_image.h"
 
-#include "SDL.h"
-#include "SDL_test.h"
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_test.h"
 
 #if defined(SDL_FILESYSTEM_OS2) || defined(SDL_FILESYSTEM_WINDOWS)
 static const char pathsep[] = "\\";

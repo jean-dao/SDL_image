@@ -23,7 +23,7 @@
 
 /* This is a Targa image file loading framework */
 
-#include "SDL_endian.h"
+#include "SDL2/SDL_endian.h"
 
 #include "SDL_image.h"
 
@@ -34,9 +34,9 @@
  * Supports: Reading 8, 15, 16, 24 and 32bpp images, with alpha or colourkey,
  *           uncompressed or RLE encoded.
  *
- * 2000-06-10 Mattias Engdegård <f91-men@nada.kth.se>: initial version
- * 2000-06-26 Mattias Engdegård <f91-men@nada.kth.se>: read greyscale TGAs
- * 2000-08-09 Mattias Engdegård <f91-men@nada.kth.se>: alpha inversion removed
+ * 2000-06-10 Mattias Engdegï¿½rd <f91-men@nada.kth.se>: initial version
+ * 2000-06-26 Mattias Engdegï¿½rd <f91-men@nada.kth.se>: read greyscale TGAs
+ * 2000-08-09 Mattias Engdegï¿½rd <f91-men@nada.kth.se>: alpha inversion removed
  */
 
 struct TGAheader {

@@ -1,15 +1,29 @@
 const std = @import("std");
 
 pub fn build(b: *std.build.Builder) void {
-    const libSDL_dep = b.dependency("SDL");
+    const libSDL_dep = b.dependency("SDL", .{});
+
+    const libSDL = libSDL_dep.artifact("SDL2");
 
     const lib = b.addStaticLibrary(.{
         .name = "SDL_image",
         .target = b.standardTargetOptions(.{}),
         .optimize = b.standardOptimizeOption(.{}),
     });
+    
+
     lib.linkLibC();
-    lib.linkLibrary(libSDL_dep.artifact("SDL2"));
+    
+    lib.defineCMacro("USE_STBIMAGE", "1");
+    lib.defineCMacro("LOAD_BMP", "1");
+    lib.defineCMacro("LOAD_GIF", "1");
+    lib.defineCMacro("LOAD_JPG", "1");
+    lib.defineCMacro("LOAD_PNG", "1");
+    lib.defineCMacro("LOAD_SVG", "1");
+    lib.defineCMacro("LOAD_TGA", "1");
+    
+    lib.linkLibrary(libSDL);
+
     lib.addCSourceFiles(&.{
         "IMG_avif.c",
         "IMG_bmp.c",
@@ -31,7 +45,9 @@ pub fn build(b: *std.build.Builder) void {
         "IMG_xv.c",
         "IMG_xxx.c",
         "IMG.c",
-    }, &.{"-std=c89"});
+    }, &.{
+        "-std=c99",
+    });
     lib.installHeader("SDL_image.h", "SDL_image.h");
     b.installArtifact(lib);
 }
