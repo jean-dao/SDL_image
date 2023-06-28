@@ -48,6 +48,6 @@ pub fn build(b: *std.build.Builder) void {
     }, &.{
         "-std=c99",
     });
-    lib.installHeader("SDL_image.h", "SDL_image.h");
+    lib.installHeader("SDL_image.h", "SDL2/SDL_image.h");
     b.installArtifact(lib);
 }
