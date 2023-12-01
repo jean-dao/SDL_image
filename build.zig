@@ -1,14 +1,20 @@
 const std = @import("std");
 
 pub fn build(b: *std.build.Builder) void {
-    const libSDL_dep = b.dependency("SDL", .{});
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
+    const libSDL_dep = b.dependency("SDL", .{
+        .target = target,
+        .optimize = optimize,
+    });
 
     const libSDL = libSDL_dep.artifact("SDL2");
 
     const lib = b.addStaticLibrary(.{
         .name = "SDL_image",
-        .target = b.standardTargetOptions(.{}),
-        .optimize = b.standardOptimizeOption(.{}),
+        .target = target,
+        .optimize = optimize,
     });
 
     lib.linkLibC();
